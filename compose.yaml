@@ -1,0 +1,16 @@
+services:
+  mariadb:
+    image: 'mariadb:latest'
+    environment:
+      - 'MARIADB_DATABASE=kulife'
+      - 'MARIADB_PASSWORD=1234'
+      - 'MARIADB_ROOT_PASSWORD=1234'
+      - 'MARIADB_USER=user'
+    ports:
+      - '3306:3306'
+    volumes:
+      - mariadb_data:/var/lib/mysql  # 볼륨 추가 (로컬과 컨테이너 데이터 디렉토리 연결)
+
+volumes:
+  mariadb_data:
+    driver: local  # 로컬 스토리지를 사용
