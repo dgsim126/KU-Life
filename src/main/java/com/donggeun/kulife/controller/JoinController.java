@@ -2,11 +2,12 @@ package com.donggeun.kulife.controller;
 
 import com.donggeun.kulife.dto.JoinDTO;
 import com.donggeun.kulife.service.JoinService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequestMapping("/api/v1")
 public class JoinController {
 
     private final JoinService joinService;
@@ -15,16 +16,15 @@ public class JoinController {
         this.joinService = joinService;
     }
 
-    @GetMapping("/join")
-    public String join() {
-        return "join";
-    }
-
+    /**
+     * 회원가입
+     * POST api/v1/join
+     * @param joinDTO
+     * @return
+     */
     @PostMapping("/join")
-    public String joinPost(JoinDTO joinDTO) {
-
+    public ResponseEntity<String> joinPost(@RequestBody JoinDTO joinDTO) {
         joinService.joinProcess(joinDTO);
-
-        return "redirect:/login";
+        return ResponseEntity.status(202).body("Join process complete.");
     }
 }

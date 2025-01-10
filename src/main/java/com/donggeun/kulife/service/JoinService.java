@@ -17,6 +17,10 @@ public class JoinService {
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
+    /**
+     * 회원가입 기본로직
+     * @param joinDTO
+     */
     public void joinProcess(JoinDTO joinDTO) {
 
         // username 중복 확인
@@ -28,7 +32,7 @@ public class JoinService {
         UserEntity data = new UserEntity();
 
         data.setUsername(joinDTO.getUsername());
-        data.setPassword(bCryptPasswordEncoder.encode(joinDTO.getPassword()));
+        data.setPassword(bCryptPasswordEncoder.encode(joinDTO.getPassword())); // 비밀번호 암호화
         data.setRole("ROLE_USER");
 
         userRepository.save(data);

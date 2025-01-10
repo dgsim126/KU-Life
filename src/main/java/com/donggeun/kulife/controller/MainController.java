@@ -12,7 +12,7 @@ import java.util.Collection;
 import java.util.Iterator;
 
 @Controller
-// @RequestMapping("/api/v1")
+@RequestMapping("/api/v1")
 public class MainController {
 
     @GetMapping("/")
